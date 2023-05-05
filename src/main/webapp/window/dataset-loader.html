@@ -1,0 +1,9 @@
+<h4 style="font-weight: bold;">데이터셋 로더</h4>
+<hr>
+<input id="file-slot" type="file" class="form-control">
+<script>
+    $("#file-slot").on("change", function() {
+        const file = document.getElementById("file-slot").files[0]
+        console.log(file)
+    });
+</script>
