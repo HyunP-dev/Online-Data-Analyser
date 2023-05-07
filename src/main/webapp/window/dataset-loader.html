@@ -28,7 +28,7 @@
             $(".dataTables_length").addClass('bs-select')
             const chksHTML = lines[0].split(',').map(col => col.trim()).map(col => `
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="">
+                    <input class="form-check-input" type="checkbox" value="${col}">
                     <label class="form-check-label">${col}</label>
                 </div>
             `).join('\n')
