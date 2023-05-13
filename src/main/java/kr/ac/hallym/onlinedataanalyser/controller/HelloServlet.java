@@ -1,4 +1,4 @@
-package kr.ac.hallym.onlinedataanalyser;
+package kr.ac.hallym.onlinedataanalyser.controller;
 
 import java.io.*;
 

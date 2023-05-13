@@ -23,6 +23,8 @@
 
     <script src="https://cdn.jsdelivr.net/npm/danfojs@1.1.2/lib/bundle.min.js"></script>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.6.347/pdf.min.js"></script>
+
     <link rel="stylesheet" href="styles/main.css" />
     <link rel="stylesheet" href="styles/menu.css" />
 
@@ -70,15 +72,6 @@
                         <span style="height: 5px;"></span>
                     </ul>
                 </div>
-                <script>
-                    const mlMenuButtons = [...document.querySelectorAll("#ml-menus li")]
-                    mlMenuButtons.map(li => {
-                        li.onclick = () => {
-                            mlMenuButtons.forEach(button => button.classList.remove("choose"))
-                            li.classList.add("choose")
-                        }
-                    })
-                </script>
             </li>
 <!--            <li class="nav-item">-->
 <!--                <a data-bs-toggle="collapse" role="button" href="#stat-menus"-->
@@ -96,16 +89,40 @@
 <!--                </div>-->
 <!--            </li>-->
             <li class="nav-item">
-                <a data-bs-toggle="collapse" role="button" href="#reports-menus"
+                <a data-bs-toggle="collapse" role="button" href="#report-menus"
                    class="nav-link text-white" aria-current="page">
                     <b>보고서</b>
                 </a>
-                <div id="reports-menus" class="submenu collapse">
+                <div id="report-menus" class="submenu collapse">
                     <ul class="nav nav-pills flex-column">
                         <li class="nav-item">작성된 보고서 목록</li>
                         <span style="height: 5px;"></span>
                     </ul>
                 </div>
+                <script>
+                    const mlMenuButtons = [...document.querySelectorAll("#ml-menus li")]
+                    const reportMenuButtons = [...document.querySelectorAll("#report-menus li")]
+
+                    mlMenuButtons.map(li => {
+                        li.onclick = () => {
+                            [...mlMenuButtons, ...reportMenuButtons]
+                                .forEach(button => button.classList.remove("choose"))
+                            li.classList.add("choose")
+                            document.getElementById("ml-panel").classList.remove("collapse")
+                            document.getElementById("report-panel").classList.add("collapse")
+                        }
+                    })
+
+                    reportMenuButtons.map(li => {
+                        li.onclick = () => {
+                            [...mlMenuButtons, ...reportMenuButtons]
+                                .forEach(button => button.classList.remove("choose"))
+                            li.classList.add("choose")
+                            document.getElementById("report-panel").classList.remove("collapse")
+                            document.getElementById("ml-panel").classList.add("collapse")
+                        }
+                    })
+                </script>
             </li>
         </ul>
 <!--        <hr>-->
@@ -120,7 +137,6 @@
 <!--        </div>-->
     </div>
 
-
     <div id="ml-panel" class="right-panel">
         <div id="dataset-loader" class="right-panel-window"></div>
         <div id="data-viewer" class="right-panel-window"></div>
@@ -131,6 +147,21 @@
             $("#vars-selector").load("window/vars-selector.html")
         </script>
         <span style="height: 5px; display: block;"></span>
+    </div>
+    <div id="report-panel" class="right-panel">
+<!--        <div id="report-selector" class="right-panel-window"></div>-->
+        <div id="report-viewer" class="right-panel-window"></div>
+        <script>
+            // $("#report-selector").load("window/report-selector.html")
+            // $("#report-viewer").load("window/report-viewer.html")
+            $("#report-viewer").load("window/report-viewer.jsp")
+        </script>
+        <style>
+            #report-viewer {
+                margin-bottom: 0;
+                height: calc(100vh - 50px);
+            }
+        </style>
     </div>
 </main>
 </body>
