@@ -11,7 +11,9 @@
     <select class="form-select" name="reports" id="report-select" style="margin-right: 10px">
         <%
             File folder = new File(System.getProperty("user.home") + "/Online-Data-Analyser-Data");
-            List<File> files = Arrays.stream(Objects.requireNonNull(folder.listFiles())).toList();
+            List<File> files = Arrays.stream(Objects.requireNonNull(folder.listFiles()))
+                    .filter(file -> file.getName().endsWith(".pdf"))
+                    .toList();
             for(File file: files) { %>
                 <option value="<%= file.getName()%>"><%= file.getName()%></option>
         <%  } %>
