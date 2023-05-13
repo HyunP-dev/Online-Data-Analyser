@@ -3,14 +3,14 @@
 <h4 style="font-weight: bold;">변수 선택</h4>
 <hr>
 <div>
-    <div>
+    <div id="select-forms-container">
         <div class="row">
-            <div class="col" id="desc-vars">
+            <div class="col" id="desc-vars" value="describe">
                 <b>설명 변수</b>
                 <div class="container">
                 </div>
             </div>
-            <div class="col" id="targ-vars">
+            <div class="col" id="targ-vars" value="target">
                 <b>목적 변수</b>
                 <div class="container">
                 </div>
@@ -27,11 +27,23 @@
     </div>
     <script>
         $("#vars-selector-btn").click(() => {
-            let inputs = {
-                desc: [...document.querySelectorAll("#desc-vars input:checked")],
-                targ: [...document.querySelectorAll("#targ-vars input:checked")]
+            const selectors = {
+                DESCRIBE: "#desc-vars input:checked",
+                TARGET: "#targ-vars input:checked"
             }
-            console.log(inputs.desc.map(input => input.value))
+            let inputs = {
+                describe: [...document.querySelectorAll(selectors.DESCRIBE)].map(input => input.value),
+                target: [...document.querySelectorAll(selectors.TARGET)].map(input => input.value)
+            }
+            if (fileReader.result == null) return;
+            $.post("/analyse", {
+                inputs: inputs,
+                method: document.querySelector("#ml-menus .nav-item .choose").dataset.algorithmName,
+                dataset: fileReader.result
+            }, function (data) {
+                console.log(data)
+                location.href = "./index.html"
+            })
         })
     </script>
 </div>

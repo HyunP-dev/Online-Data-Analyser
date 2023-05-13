@@ -3,12 +3,14 @@
 <input id="file-slot" type="file" class="form-control">
 
 <script>
+    const fileReader = new FileReader()
+
     $("#file-slot").on("change", function() {
         /**
          * @type {File}
          */
         const file = document.getElementById("file-slot").files[0]
-        const fileReader = new FileReader()
+
         fileReader.readAsText(file)
         fileReader.onloadend = () => {
             const data = fileReader.result

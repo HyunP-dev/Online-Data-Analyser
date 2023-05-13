@@ -65,25 +65,36 @@
                 </a>
                 <div id="ml-menus" class="submenu collapse">
                     <ul class="nav nav-pills flex-column">
-                        <li class="nav-item">최근접 알고리즘</li>
-                        <li class="nav-item">의사결정나무</li>
+                        <li class="nav-item" data-algorithm-name="k-nn">최근접 알고리즘</li>
+                        <li class="nav-item" data-algorithm-name="decision-tree">의사결정나무</li>
                         <span style="height: 5px;"></span>
                     </ul>
                 </div>
+                <script>
+                    const mlMenuButtons = [...document.querySelectorAll("#ml-menus li")]
+                    mlMenuButtons.map(li => {
+                        li.onclick = () => {
+                            mlMenuButtons.forEach(button => button.classList.remove("choose"))
+                            li.classList.add("choose")
+                        }
+                    })
+                </script>
             </li>
-            <li class="nav-item">
-                <a data-bs-toggle="collapse" role="button" href="#stat-menus"
-                   class="nav-link text-white" aria-current="page">
-                    <b>통계</b>
-                </a>
-                <div id="stat-menus" class="submenu collapse">
-                    <ul class="nav nav-pills flex-column">
-                        <li class="nav-item">최근접 알고리즘</li>
-                        <li class="nav-item">의사결정나무</li>
-                        <span style="height: 5px;"></span>
-                    </ul>
-                </div>
-            </li>
+<!--            <li class="nav-item">-->
+<!--                <a data-bs-toggle="collapse" role="button" href="#stat-menus"-->
+<!--                   class="nav-link text-white" aria-current="page">-->
+<!--                    <b>통계</b>-->
+<!--                </a>-->
+<!--                <div id="stat-menus" class="submenu collapse">-->
+<!--                    <ul class="nav nav-pills flex-column">-->
+<!--                        <li class="nav-item">교차분석</li>-->
+<!--                        <li class="nav-item">분산분석</li>-->
+<!--                        <li class="nav-item">상관분석</li>-->
+<!--                        <li class="nav-item">회귀분석</li>-->
+<!--                        <span style="height: 5px;"></span>-->
+<!--                    </ul>-->
+<!--                </div>-->
+<!--            </li>-->
             <li class="nav-item">
                 <a data-bs-toggle="collapse" role="button" href="#reports-menus"
                    class="nav-link text-white" aria-current="page">
