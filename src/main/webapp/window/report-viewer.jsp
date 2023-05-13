@@ -7,14 +7,14 @@
 <h4 style="font-weight: bold;">보고서 뷰어</h4>
 <hr>
 <div class="d-flex bd-highlight">
-    <%
-        File folder = new File(System.getProperty("user.home") + "/Online-Data-Analyser-Data");
-        List<File> files = Arrays.stream(Objects.requireNonNull(folder.listFiles())).toList();
-    %>
+
     <select class="form-select" name="reports" id="report-select" style="margin-right: 10px">
-        <% for(File file: files) { %>
-            <option value="<%= file.getName()%>"><%= file.getName()%></option>
-        <% } %>
+        <%
+            File folder = new File(System.getProperty("user.home") + "/Online-Data-Analyser-Data");
+            List<File> files = Arrays.stream(Objects.requireNonNull(folder.listFiles())).toList();
+            for(File file: files) { %>
+                <option value="<%= file.getName()%>"><%= file.getName()%></option>
+        <%  } %>
     </select>
     <button class="btn btn-primary" style="white-space:nowrap;">선택</button>
 </div>
