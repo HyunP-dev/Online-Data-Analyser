@@ -21,9 +21,16 @@
     <button class="btn btn-primary" style="white-space:nowrap;">선택</button>
 </div>
 
-<embed type="application/pdf" src="./report" style="
+<embed type="application/pdf" src="./pdf" style="
     margin-top: 16px;
     width: 100%;
     height: calc(100% - 115px);
     border: 1px solid black;
 ">
+<script>
+    $("#report-viewer .btn").click(() => {
+        const filename = $("#report-viewer select").val()
+        console.log(filename)
+        $('#report-viewer embed').attr("src", "./pdf?filename=" + filename)
+    })
+</script>

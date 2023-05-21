@@ -27,4 +27,8 @@ public class Correlation {
         pValue = engine.parseAndEval("t$p.value").asDouble();
         engine.close();
     }
+
+    public void generateReport() {
+
+    }
 }

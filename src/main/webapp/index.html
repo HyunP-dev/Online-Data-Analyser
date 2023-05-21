@@ -29,14 +29,8 @@
     <link rel="stylesheet" href="styles/menu.css" />
 
     <script>
-        // function showPanel(panelType) {
-        //     $(".right-panel").hide()
-        //     $('#' + panelType).show()
-        //     $(".nav-item > div").removeClass("active").addClass("text-white")
-        //     $(`#${panelType}-button`).addClass("active")
-        // }
-
         window.onload = () => {
+            if (document.cookie.indexOf("token=") === -1) location.href = "./login.html"
 
         }
 
