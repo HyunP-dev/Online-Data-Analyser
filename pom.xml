@@ -48,7 +48,11 @@
             <artifactId>tomcat-embed-jasper</artifactId>
             <version>11.0.0-M5</version>
         </dependency>
-
+        <dependency>
+            <groupId>com.jason-goodwin</groupId>
+            <artifactId>better-monads</artifactId>
+            <version>0.4.0</version>
+        </dependency>
     </dependencies>
 
     <build>

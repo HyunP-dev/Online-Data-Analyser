@@ -1,3 +1,4 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -27,10 +28,12 @@
 
     <link rel="stylesheet" href="styles/main.css" />
     <link rel="stylesheet" href="styles/menu.css" />
-
     <script>
+        <%
+            if (session.getAttribute("userid") == null) response.sendRedirect("./login.html");
+        %>
         window.onload = () => {
-            if (document.cookie.indexOf("token=") === -1) location.href = "./login.html"
+            // if (document.cookie.indexOf("token=") === -1) location.href = "./login.html"
 
         }
 

@@ -1,15 +1,17 @@
 package kr.ac.hallym.onlinedataanalyser.repository;
 
+import java.sql.SQLException;
+
 public interface IRepository<T> {
-    long count();
+    long count() throws SQLException;
 
-    void delete(T entity);
+    void delete(T entity) throws SQLException;
 
-    void deleteAll();
+    void deleteAll() throws SQLException;
 
-    Iterable<T> findAll();
+    Iterable<T> findAll() throws SQLException;
 
-    void save(T entity);
+    void save(T entity) throws SQLException;
 
-    void saveAll(Iterable<T> entities);
+    void saveAll(Iterable<T> entities) throws SQLException;
 }
