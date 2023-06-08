@@ -11,7 +11,7 @@ public class Dataset {
 
     private final String[][] values;
 
-    public Dataset(RawDataset raw) {
+    private Dataset(RawDataset raw) {
         title = raw.getTitle();
         final String content = raw.getContent();
         String[] lines = content.split("\n");
@@ -24,5 +24,9 @@ public class Dataset {
 
     public String getValue(String column, int index) {
         return values[index][column.indexOf(column)];
+    }
+
+    public static Dataset from(RawDataset raw) {
+        return new Dataset(raw);
     }
 }
