@@ -5,6 +5,7 @@ import org.rosuda.REngine.REXPMismatchException;
 import org.rosuda.REngine.REngine;
 import org.rosuda.REngine.REngineException;
 
+import java.io.*;
 import java.lang.reflect.InvocationTargetException;
 
 public class Correlation {
@@ -28,7 +29,10 @@ public class Correlation {
         engine.close();
     }
 
-    public void generateReport() {
-
+    public void generateReport() throws IOException {
+        String filename = "temp.pdf";
+        String path = System.getProperty("user.home") + "/Online-Data-Analyser-Data/" + filename;
+        FileWriter fileWriter = new FileWriter(path);
+        fileWriter.write();
     }
 }

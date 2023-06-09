@@ -26,22 +26,22 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.6.347/pdf.min.js"></script>
 
-    <link rel="stylesheet" href="styles/main.css" />
-    <link rel="stylesheet" href="styles/menu.css" />
+    <link rel="stylesheet" href="styles/main.css"/>
+    <link rel="stylesheet" href="styles/menu.css"/>
     <script>
         <%
             if (session.getAttribute("userid") == null) response.sendRedirect("./login.html");
         %>
+
         window.onload = () => {
             // if (document.cookie.indexOf("token=") === -1) location.href = "./login.html"
-
+            document.getElementById("ml-panel").classList.remove("collapse")
+            document.querySelector("#report-menus li").classList.add("choose")
         }
 
         function logout() {
-            if (!confirm("로그아웃하시겠습니까?")) return;
-
-            location.href = "/"
-            document.cookie = "sessionkey=; expires=Thu, 01 Jan 1970 00:00:01 GMT;";
+            if (!confirm("로그아웃하시겠습니까?")) return
+            location.href = "/logout"
         }
     </script>
 </head>
@@ -50,7 +50,7 @@
 <main class="d-flex flex-nowrap" style="height: 100vh;">
     <div class="left-panel d-flex flex-column flex-shrink-0 p-3 text-bg-dark" style="width: 280px;">
         <a href="#" class="text-white text-decoration-none"
-            style="text-align: center;">
+           style="text-align: center;">
                 <span class="fs-4" style="font-weight: bold;">
                     데이터 분석기
                 </span>
@@ -70,21 +70,21 @@
                     </ul>
                 </div>
             </li>
-<!--            <li class="nav-item">-->
-<!--                <a data-bs-toggle="collapse" role="button" href="#stat-menus"-->
-<!--                   class="nav-link text-white" aria-current="page">-->
-<!--                    <b>통계</b>-->
-<!--                </a>-->
-<!--                <div id="stat-menus" class="submenu collapse">-->
-<!--                    <ul class="nav nav-pills flex-column">-->
-<!--                        <li class="nav-item">교차분석</li>-->
-<!--                        <li class="nav-item">분산분석</li>-->
-<!--                        <li class="nav-item">상관분석</li>-->
-<!--                        <li class="nav-item">회귀분석</li>-->
-<!--                        <span style="height: 5px;"></span>-->
-<!--                    </ul>-->
-<!--                </div>-->
-<!--            </li>-->
+            <!--            <li class="nav-item">-->
+            <!--                <a data-bs-toggle="collapse" role="button" href="#stat-menus"-->
+            <!--                   class="nav-link text-white" aria-current="page">-->
+            <!--                    <b>통계</b>-->
+            <!--                </a>-->
+            <!--                <div id="stat-menus" class="submenu collapse">-->
+            <!--                    <ul class="nav nav-pills flex-column">-->
+            <!--                        <li class="nav-item">교차분석</li>-->
+            <!--                        <li class="nav-item">분산분석</li>-->
+            <!--                        <li class="nav-item">상관분석</li>-->
+            <!--                        <li class="nav-item">회귀분석</li>-->
+            <!--                        <span style="height: 5px;"></span>-->
+            <!--                    </ul>-->
+            <!--                </div>-->
+            <!--            </li>-->
             <li class="nav-item">
                 <a data-bs-toggle="collapse" role="button" href="#report-menus"
                    class="nav-link text-white" aria-current="page">
@@ -122,16 +122,16 @@
                 </script>
             </li>
         </ul>
-<!--        <hr>-->
-<!--        <div class="dropdown">-->
-<!--                <span class="d-flex align-items-center text-white text-decoration-none" aria-expanded="false">-->
-<!--                    <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">-->
-<!--                    <strong>어떤가게</strong>-->
-<!--                    <span style="margin-left: auto;">-->
-<!--                        <i onclick="logout()" style="cursor: pointer;" class="fa-solid fa-arrow-right-from-bracket"></i>-->
-<!--                    </span>-->
-<!--                </span>-->
-<!--        </div>-->
+        <hr>
+        <div class="dropdown">
+        <span class="d-flex align-items-center text-white text-decoration-none" aria-expanded="false">
+<%--            <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">--%>
+            <strong><%= session.getAttribute("userid")%></strong>
+            <span style="margin-left: auto;">
+                <i onclick="logout()" style="cursor: pointer;" class="fa-solid fa-arrow-right-from-bracket"></i>
+            </span>
+        </span>
+        </div>
     </div>
 
     <div id="ml-panel" class="right-panel">
@@ -146,7 +146,7 @@
         <span style="height: 5px; display: block;"></span>
     </div>
     <div id="report-panel" class="right-panel">
-<!--        <div id="report-selector" class="right-panel-window"></div>-->
+        <!--        <div id="report-selector" class="right-panel-window"></div>-->
         <div id="report-viewer" class="right-panel-window"></div>
         <script>
             // $("#report-selector").load("window/report-selector.html")

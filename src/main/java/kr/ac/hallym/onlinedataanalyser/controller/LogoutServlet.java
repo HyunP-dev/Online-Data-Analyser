@@ -12,27 +12,12 @@ import kr.ac.hallym.onlinedataanalyser.repository.UsersRepository;
 import lombok.SneakyThrows;
 
 
-@WebServlet(name = "loginServlet", value = "/login")
-public class LoginServlet extends HttpServlet {
+@WebServlet(name = "logoutServlet", value = "/logout")
+public class LogoutServlet extends HttpServlet {
     @SneakyThrows
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) {
-        String userid = req.getParameter("userid");
-        String userpw = req.getParameter("userpw");
-
-
-        UsersRepository usersRepository = new UsersRepository();
-        for (User user : usersRepository.findAll()) {
-            if (user.getUserid().equals(userid) && user.getUserpw().equals(userpw)) {
-                System.out.println(userid);
-
-                req.getSession().setAttribute("userid", userid);
-
-                resp.sendRedirect("./");
-                return;
-            }
-        }
-        resp.addCookie(new Cookie("login-failed", ""));
+        req.getSession().removeAttribute("userid");
         resp.sendRedirect("./");
     }
 }
