@@ -47,7 +47,9 @@ public class KNearestNeighbors implements Closeable {
         Scanner scanner = new Scanner(new File("/home/researcher/Downloads/iris.csv"));
         StringBuilder rawIrisBuilder = new StringBuilder();
         while (scanner.hasNextLine()) {
-            rawIrisBuilder.append(scanner.nextLine() + "\n");
+            rawIrisBuilder
+                    .append(scanner.nextLine())
+                    .append("\n");
         }
         String rawIris = rawIrisBuilder.toString();
         RawDataset rawDataset = new RawDataset("iris", rawIris);
