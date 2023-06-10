@@ -28,11 +28,4 @@ public class Correlation {
         pValue = engine.parseAndEval("t$p.value").asDouble();
         engine.close();
     }
-
-    public void generateReport() throws IOException {
-        String filename = "temp.pdf";
-        String path = System.getProperty("user.home") + "/Online-Data-Analyser-Data/" + filename;
-        FileWriter fileWriter = new FileWriter(path);
-        fileWriter.write();
-    }
 }

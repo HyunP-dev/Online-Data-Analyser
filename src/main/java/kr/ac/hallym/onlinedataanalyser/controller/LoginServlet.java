@@ -9,6 +9,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import kr.ac.hallym.onlinedataanalyser.database.Database;
 import kr.ac.hallym.onlinedataanalyser.model.User;
 import kr.ac.hallym.onlinedataanalyser.repository.UsersRepository;
+import kr.ac.hallym.onlinedataanalyser.toolkit.Cryptography;
 import lombok.SneakyThrows;
 
 
@@ -18,7 +19,9 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) {
         String userid = req.getParameter("userid");
-        String userpw = req.getParameter("userpw");
+        String userpw = Cryptography.encrypt(
+                Cryptography.SHA256,
+                req.getParameter("userpw"));
 
 
         UsersRepository usersRepository = new UsersRepository();

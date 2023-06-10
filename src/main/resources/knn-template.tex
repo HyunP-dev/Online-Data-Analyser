@@ -1,0 +1,18 @@
+\documentclass[a4paper]{article}
+
+\usepackage{kotex}
+\setmainhangulfont[Mapping=tex-text]{NanumMyeongjo}
+\setsanshangulfont[Mapping=tex-text]{NanumGothic}
+
+\title{@title}
+\begin{document}
+    \maketitle
+    \section{데이터 요약}
+    @dataset-summary
+
+    \section{$k$-NN 결과}
+    @knn-result
+
+    \section{최적 매개변수 추정치}
+    본 데이터셋의 가장 최적인 $k$의 값은 @argmaxk 으로 추정됩니다.
+\end{document}
