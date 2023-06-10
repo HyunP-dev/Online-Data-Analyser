@@ -37,8 +37,10 @@
             }
             if (fileReader.result == null) return;
             $.post("/analyse", {
-                inputs: inputs,
-                method: document.querySelector("#ml-menus .nav-item .choose").dataset.algorithmName,
+                filename: document.getElementById("file-slot").files[0].name,
+                describe: inputs.describe.join("::"),
+                target: inputs.target.join("::"),
+                method: document.querySelector(".choose").dataset.algorithmName,
                 dataset: fileReader.result
             }, function (data) {
                 console.log(data)

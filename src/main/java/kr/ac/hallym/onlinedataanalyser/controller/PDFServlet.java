@@ -19,6 +19,8 @@ public class PDFServlet extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) {
         response.setContentType("application/pdf");
         String filename = request.getParameter("filename");
+        if (!filename.split("-")[0].equals(request.getSession().getAttribute("userid")))
+            throw new Exception("공격을 감지하였습니다.");
         if (filename.contains("..")) throw new Exception("공격을 감지하였습니다.");
         InputStream in = new FileInputStream(System.getProperty("user.home") + "/Online-Data-Analyser-Data/" + filename);
         OutputStream out = response.getOutputStream();

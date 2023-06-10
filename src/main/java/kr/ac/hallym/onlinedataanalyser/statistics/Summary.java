@@ -18,7 +18,7 @@ public class Summary {
         engine.assign("df", engine.parseAndEval("read.table(text=content, sep=\",\", header=T, stringsAsFactors=F)"));
         engine.assign("res", engine.parseAndEval("summary(df)"));
         engine.parseAndEval("library(xtable)");
-        engine.assign("res.tex", "xtable(res) |> print()");
+        engine.assign("res.tex", engine.parseAndEval("xtable(res) |> print()"));
         resultTeX = engine.parseAndEval("res.tex").asString();
     }
 
