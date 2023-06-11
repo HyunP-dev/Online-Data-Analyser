@@ -12,6 +12,8 @@ import kr.ac.hallym.onlinedataanalyser.repository.UsersRepository;
 import kr.ac.hallym.onlinedataanalyser.toolkit.Cryptography;
 import lombok.SneakyThrows;
 
+import java.io.IOException;
+
 
 @WebServlet(name = "loginServlet", value = "/login")
 public class LoginServlet extends HttpServlet {
@@ -24,14 +26,14 @@ public class LoginServlet extends HttpServlet {
 //                req.getParameter("userpw"));
         String userpw = req.getParameter("userpw");
 
-
         UsersRepository usersRepository = new UsersRepository();
-        for (User user : usersRepository.findAll()) {
-            if (user.getUserid().equals(userid) && user.getUserpw().equals(userpw)) {
-                req.getSession().setAttribute("userid", userid);
-                resp.sendRedirect("./");
-                return;
-            }
+        boolean loginSuccess = usersRepository.findByUserid(userid)
+                .map(user -> user.getUserpw().equals(userpw))
+                .orElse(false);
+        if (loginSuccess) {
+            req.getSession().setAttribute("userid", userid);
+            resp.sendRedirect("./");
+            return;
         }
         resp.addCookie(new Cookie("login-failed", ""));
         resp.sendRedirect("./");

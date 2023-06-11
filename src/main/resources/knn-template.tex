@@ -1,5 +1,8 @@
 \documentclass[a4paper]{article}
 
+\usepackage[top=20mm, bottom=30mm, left=20mm, right=20mm, a4paper]{geometry}
+\usepackage{multicol}
+
 \usepackage{kotex}
 \setmainhangulfont[Mapping=tex-text]{NanumMyeongjo}
 \setsanshangulfont[Mapping=tex-text]{NanumGothic}
@@ -11,8 +14,10 @@
     @dataset-summary
 
     \section{$k$-NN 결과}
-    @knn-result
-
+    \begin{multicols}{3}
+        \noindent
+        @knn-result
+    \end{multicols}
     \section{최적 매개변수 추정치}
     본 데이터셋의 가장 최적인 $k$의 값은 @argmax-k 으로 추정됩니다.
 \end{document}

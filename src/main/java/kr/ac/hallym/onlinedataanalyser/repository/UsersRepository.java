@@ -6,6 +6,7 @@ import kr.ac.hallym.onlinedataanalyser.model.User;
 import javax.xml.crypto.Data;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Optional;
 
 
 public class UsersRepository implements IRepository<User> {
@@ -39,6 +40,21 @@ public class UsersRepository implements IRepository<User> {
 
         assert connection != null;
         connection.createStatement().execute("TRUNCATE TABLE users");
+    }
+
+    public Optional<User> findByUserid(String userid) throws SQLException {
+        Connection connection = Database.getConnection();
+
+        assert connection != null;
+        Statement query = connection.createStatement();
+
+        // TODO: Prevent SQL Injection
+        ResultSet rs = query.executeQuery("SELECT * FROM users WHERE userid='"+userid+"'");
+        return rs.next() ? Optional.of(new User(
+                rs.getString("userid"),
+                rs.getString("userpw"),
+                rs.getString("nickname")
+        )): Optional.empty();
     }
 
     @Override
