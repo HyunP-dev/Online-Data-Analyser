@@ -13,6 +13,7 @@ import kr.ac.hallym.onlinedataanalyser.toolkit.Cryptography;
 import lombok.SneakyThrows;
 
 import java.io.IOException;
+import java.util.Optional;
 
 
 @WebServlet(name = "loginServlet", value = "/login")
@@ -27,11 +28,12 @@ public class LoginServlet extends HttpServlet {
         String userpw = req.getParameter("userpw");
 
         UsersRepository usersRepository = new UsersRepository();
-        boolean loginSuccess = usersRepository.findByUserid(userid)
+        Optional<User> loginUser = usersRepository.findByUserid(userid);
+        boolean loginSuccess = loginUser
                 .map(user -> user.getUserpw().equals(userpw))
                 .orElse(false);
         if (loginSuccess) {
-            req.getSession().setAttribute("userid", userid);
+            req.getSession().setAttribute("user", loginUser.get());
             resp.sendRedirect("./");
             return;
         }

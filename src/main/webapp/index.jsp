@@ -1,3 +1,4 @@
+<%@ page import="kr.ac.hallym.onlinedataanalyser.model.User" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -30,7 +31,7 @@
     <link rel="stylesheet" href="styles/menu.css"/>
     <script>
         <%
-            if (session.getAttribute("userid") == null) response.sendRedirect("./login.html");
+            if (session.getAttribute("user") == null) response.sendRedirect("./login.html");
         %>
 
         window.onload = () => {
@@ -126,7 +127,8 @@
         <div class="dropdown">
         <span class="d-flex align-items-center text-white text-decoration-none" aria-expanded="false">
 <%--            <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">--%>
-            <strong><%= session.getAttribute("userid")%></strong>
+            <% User user = ((User) session.getAttribute("user")); %>
+            <strong><%= user!=null?user.getNickname():""%></strong>
             <span style="margin-left: auto;">
                 <i onclick="logout()" style="cursor: pointer;" class="fa-solid fa-arrow-right-from-bracket"></i>
             </span>
@@ -161,5 +163,9 @@
         </style>
     </div>
 </main>
+<script>
+    window.onload = () =>
+        $(reportMenuButtons[0]).click()
+</script>
 </body>
 </html>

@@ -4,6 +4,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import kr.ac.hallym.onlinedataanalyser.model.User;
 import lombok.SneakyThrows;
 
 import java.io.FileInputStream;
@@ -19,7 +20,8 @@ public class PDFServlet extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) {
         response.setContentType("application/pdf");
         String filename = request.getParameter("filename");
-        if (!filename.split("-")[0].equals(request.getSession().getAttribute("userid")))
+        User user = (User) request.getSession().getAttribute("user");
+        if (!filename.split("-")[0].equals(user.getUserid()))
             throw new Exception("공격을 감지하였습니다.");
         if (filename.contains("..")) throw new Exception("공격을 감지하였습니다.");
         InputStream in = new FileInputStream(System.getProperty("user.home") + "/Online-Data-Analyser-Data/" + filename);

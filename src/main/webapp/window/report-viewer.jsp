@@ -2,17 +2,19 @@
 <%@ page import="java.util.Arrays" %>
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.Objects" %>
+<%@ page import="kr.ac.hallym.onlinedataanalyser.model.User" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <h4 style="font-weight: bold;">보고서 뷰어</h4>
 <hr>
 <div class="d-flex bd-highlight">
-
+    <% User user = (User) session.getAttribute("user"); %>
     <select class="form-select" name="reports" id="report-select" style="margin-right: 10px">
         <%
             File folder = new File(System.getProperty("user.home") + "/Online-Data-Analyser-Data");
             List<File> files = Arrays.stream(Objects.requireNonNull(folder.listFiles()))
                     .filter(file -> file.getName().endsWith(".pdf"))
+                    .filter(file -> file.getName().startsWith(user.getUserid()))
                     .toList();
             for(File file: files) { %>
                 <option value="<%= file.getName()%>"><%= file.getName()%></option>

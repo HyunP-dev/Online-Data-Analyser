@@ -22,7 +22,7 @@ public class AnalyseServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 //        super.doPost(req, resp);
-        String userid = (String) req.getSession().getAttribute("userid");
+        User user = (User) req.getSession().getAttribute("user");
         String method = req.getParameter("method");
         String dataset = req.getParameter("dataset");
         String target = req.getParameter("target");
@@ -36,7 +36,7 @@ public class AnalyseServlet extends HttpServlet {
             case "k-nn" -> {
                 System.out.println("[LOG] AnalyseServlet: " + "started kNN");
                 KNearestNeighbors kNN = new KNearestNeighbors(
-                        userid, new RawDataset(filename, dataset),
+                        user.getUserid(), new RawDataset(filename, dataset),
                         describe, target);
                 kNN.generateReport();
 //                System.out.println("[LOG] AnalyseServlet: " + "kNN.generateReport(); END");
