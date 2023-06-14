@@ -17,7 +17,7 @@ public class LogoutServlet extends HttpServlet {
     @SneakyThrows
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) {
-        req.getSession().removeAttribute("user");
+        req.getSession().invalidate();
         resp.sendRedirect("./");
     }
 }
