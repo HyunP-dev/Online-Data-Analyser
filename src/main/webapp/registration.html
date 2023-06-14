@@ -61,14 +61,14 @@
 </head>
 <body>
 <main class="form-signin w-100 m-auto">
-    <form method="get" action="./registration" onsubmit="return encrypt(this)">
+    <form method="post" action="./registration" onsubmit="return encrypt(this)">
         <h1 class="h3 mb-3 fw-normal">Registration</h1>
         <label for="userid"><small>User ID</small></label>
         <div class="input-group" style="margin-bottom: 8px">
             <input type="text" class="form-control" placeholder="" id="userid" name="userid">
-            <div class="input-group-append">
-                <button class="btn btn-secondary" style="border-radius: 0 4px 4px 0 ">중복확인</button>
-            </div>
+<!--            <div class="input-group-append">-->
+<!--                <button class="btn btn-secondary" style="border-radius: 0 4px 4px 0 ">중복확인</button>-->
+<!--            </div>-->
         </div>
 
         <label for="nickname"><small>Nickname</small></label>

@@ -83,7 +83,7 @@ public class KNearestNeighbors implements Closeable {
         int argmaxK = -1;
         double maxS = -1;
         for (int i = 1; i < 50; i++) {
-            System.out.println("[LOG] KNearestNeighbors: " + "scoring " + i);
+//            System.out.println("[LOG] KNearestNeighbors: " + "scoring " + i);
             double score = score(i);
             if (score > maxS) {
                 argmaxK = i;

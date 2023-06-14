@@ -18,10 +18,11 @@ public class PDFServlet extends HttpServlet {
 
     @SneakyThrows
     public void doGet(HttpServletRequest request, HttpServletResponse response) {
+        System.out.println("[LOG] PDFServlet");
         response.setContentType("application/pdf");
         String filename = request.getParameter("filename");
         User user = (User) request.getSession().getAttribute("user");
-        if (!filename.split("-")[0].equals(user.getUserid()))
+        if (user == null || !filename.split("-")[0].equals(user.getUserid()))
             throw new Exception("공격을 감지하였습니다.");
         if (filename.contains("..")) throw new Exception("공격을 감지하였습니다.");
         InputStream in = new FileInputStream(System.getProperty("user.home") + "/Online-Data-Analyser-Data/" + filename);
