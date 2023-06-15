@@ -4,22 +4,29 @@ import lombok.experimental.StandardException;
 import lombok.experimental.UtilityClass;
 
 import java.io.*;
+import java.util.HashMap;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
 @UtilityClass
 public class TeXGenerator {
+    private final ClassLoader classLoader = TeXGenerator.class.getClassLoader();
+    private final HashMap<TeXTemplate, String> cache = new HashMap<>();
+
     public String loadTeXTemplate(TeXTemplate template) throws IOException {
+        if (cache.containsKey(template)) return cache.get(template);
+        String templateFilename = template.toString();
         InputStream inputStream = Objects.requireNonNull(
-                TeXGenerator.class.getClassLoader().getResource(template.toString())
+                classLoader.getResource(templateFilename)
         ).openStream();
-        return new BufferedReader(new InputStreamReader(inputStream))
+        String templateTeX = new BufferedReader(new InputStreamReader(inputStream))
                 .lines()
                 .collect(Collectors.joining("\n"));
+        cache.put(template, templateTeX);
+        return templateTeX;
     }
 
     /**
-     *
      * @param filename filename must include an extension.
      * @param tex
      * @throws IOException
