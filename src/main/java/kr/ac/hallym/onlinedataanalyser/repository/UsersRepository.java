@@ -3,7 +3,6 @@ package kr.ac.hallym.onlinedataanalyser.repository;
 import kr.ac.hallym.onlinedataanalyser.database.Database;
 import kr.ac.hallym.onlinedataanalyser.model.User;
 
-import javax.xml.crypto.Data;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Optional;

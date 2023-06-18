@@ -3,18 +3,14 @@ package kr.ac.hallym.onlinedataanalyser.statistics;
 import kr.ac.hallym.onlinedataanalyser.model.RawDataset;
 import kr.ac.hallym.onlinedataanalyser.toolkit.TeXGenerator;
 import kr.ac.hallym.onlinedataanalyser.toolkit.TeXTemplate;
-import org.rosuda.REngine.REXP;
 import org.rosuda.REngine.REXPMismatchException;
 import org.rosuda.REngine.REngine;
 import org.rosuda.REngine.REngineException;
 
 import java.io.Closeable;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
-import java.util.Arrays;
-import java.util.HashMap;
 import java.util.Scanner;
 
 public class KNearestNeighbors implements Closeable {

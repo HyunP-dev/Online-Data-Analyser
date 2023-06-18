@@ -1,6 +1,5 @@
 package kr.ac.hallym.onlinedataanalyser.toolkit;
 
-import lombok.experimental.StandardException;
 import lombok.experimental.UtilityClass;
 
 import java.io.*;

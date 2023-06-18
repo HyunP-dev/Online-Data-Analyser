@@ -5,7 +5,6 @@ import org.rosuda.REngine.REXPMismatchException;
 import org.rosuda.REngine.REngine;
 import org.rosuda.REngine.REngineException;
 
-import java.io.*;
 import java.lang.reflect.InvocationTargetException;
 
 public class Correlation {

@@ -1,18 +1,14 @@
 package kr.ac.hallym.onlinedataanalyser.controller;
 
-import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import kr.ac.hallym.onlinedataanalyser.database.Database;
 import kr.ac.hallym.onlinedataanalyser.model.User;
 import kr.ac.hallym.onlinedataanalyser.repository.UsersRepository;
-import kr.ac.hallym.onlinedataanalyser.toolkit.Cryptography;
 import lombok.SneakyThrows;
 
-import java.io.IOException;
 import java.util.Optional;
 
 
