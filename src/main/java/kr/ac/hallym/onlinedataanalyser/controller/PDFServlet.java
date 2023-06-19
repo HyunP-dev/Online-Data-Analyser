@@ -22,9 +22,8 @@ public class PDFServlet extends HttpServlet {
         response.setContentType("application/pdf");
         String filename = request.getParameter("filename");
         User user = (User) request.getSession().getAttribute("user");
-        if (user == null || !filename.split("-")[0].equals(user.getUserid()))
+        if (user == null || !filename.split("-")[0].equals(user.getUserid()) || filename.contains(".."))
             throw new Exception("공격을 감지하였습니다.");
-        if (filename.contains("..")) throw new Exception("공격을 감지하였습니다.");
         InputStream in = new FileInputStream(System.getProperty("user.home") + "/Online-Data-Analyser-Data/" + filename);
         OutputStream out = response.getOutputStream();
         byte[] buffer = new byte[1024];
