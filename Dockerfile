@@ -26,3 +26,5 @@ ENV JRE_HOME /usr/lib/jvm/jre-17-openjdk
 
 WORKDIR /
 EXPOSE 8080
+
+# 차후에 개발 환경이 바뀌었을 떄를 대비하여 Dockerfile을 작성하는 중...
